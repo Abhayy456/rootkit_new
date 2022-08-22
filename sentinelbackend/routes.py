@@ -75,20 +75,17 @@ def quickscan():
             }
         )
 
-
 @app.route('/blockIP', methods=['POST'])
 def block_ip():
     if request.method == 'POST':
         response = addToBlacklist(request.form.get('IP'), request.form.get('port') if request.form.get('port') != None else "*")
         return response
 
-
 @app.route('/unblockIP', methods=['POST'])
 def unblock_ip():
     if request.method == 'POST':
         response = removeFromBlacklist(request.form.get('IP'), request.form.get('port') if request.form.get('port') != None else "*")
         return response
-
 
 @app.route('/getRules', methods=['POST'])
 def get_rules():
@@ -98,11 +95,9 @@ def get_rules():
         }
     )
 
-
 @app.route('/advancedScan', methods=['POST'])
 def advanced_scan():
     return jsonify(adv_scan(request.form.get('filepath')))
-
 
 @app.route('/getScheduledFiles', methods=['POST'])
 def getS():
@@ -116,7 +111,6 @@ def getS():
 def removeFromList():
     removeFileFromScheduled(request.form.get('filepath'))
     return "removed from list"
-
 
 @app.route('/deleteFile', methods=['POST'])
 def deleteme():
@@ -132,11 +126,9 @@ def scanIP():
         "results": virusTotalIPScan(request.form.get('IP'))
     })
 
-
 @app.route('/getReport', methods=['POST'])
 def quick_scan():
     return jsonify(quickScan(request.form.get('filepath')))
-
 
 @app.route('/killProcess', methods=['POST'])
 def killProcess():
@@ -148,22 +140,6 @@ def killProcess():
             return "process terminated"
         except:
             return "some error occured. Are you sure you have sudo priviledge"
-
-
-@app.route('/getchkrScanResults', methods=['POST'])
-def chkscan():
-    if request.method == 'POST':
-        return jsonify({
-            "results": fetchScanResults("~/chkrootkitLogs/fileLog.txt")
-        })
-
-
-@app.route('/chkrScan', methods=['POST'])
-def scan():
-    if request.method == 'POST':
-        os.system(expanduser("./chkrootkit2 -q"))
-    return "Scan Complete"
-
 
 @app.route('/getSuspectFiles', methods=['POST'])
 def getf():

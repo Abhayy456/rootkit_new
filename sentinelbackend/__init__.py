@@ -8,7 +8,7 @@ if os.name == "nt":
 else:
   app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 db = SQLAlchemy(app)
-
+# for configuration of the database
 from sentinelbackend import routes, schedulers
 from sentinelbackend.models import addToBlacklist
 

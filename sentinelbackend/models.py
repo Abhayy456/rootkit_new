@@ -9,6 +9,7 @@ if os.name != 'nt':
 # models.py
 class Blacklist(db.Model):
     # sno = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    # class is made here and ip and port both make compound primary keys
     ip = db.Column(db.String, primary_key=True)
     port = db.Column(db.String(6), primary_key=True)
 
@@ -123,7 +124,7 @@ def getScheduledFiles():
     }, scheduledFiles.query.all()))
 
 
-def addScheduledFile(filepath, hash, user="Devansh"):
+def addScheduledFile(filepath, hash, user="Abhay_Sharma"):
     print(str(datetime.datetime.now()), user)
     newFile = scheduledFiles(file=filepath, hash=hash, time=str(datetime.datetime.now()), user=user)
     db.session.add(newFile)

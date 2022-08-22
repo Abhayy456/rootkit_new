@@ -82,10 +82,4 @@ def fetchScanResults(path):
     }, filter(lambda x: (" : ") in x, contents)))
 
 
-def getSuspectFiles(path):
-    path = expanduser("~/chkrootkitLogs/suspectedPaths.txt")
-    f = open(expanduser(path), "r")
-    contents = f.read()
-    contents = contents.split('\n')
-    contents = list(map(lambda c: c.split(' '), contents))
-    return contents
+

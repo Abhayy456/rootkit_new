@@ -50,12 +50,6 @@ def scanIp(ip):
             "negatives": len(json_response["undetected_downloaded_samples"]),
             "positives": len(json_response["detected_downloaded_samples"])
         }
-    if len(json_response.get("detected_downloaded_samples")) == 0 and len(json_response.get("undetected_downloaded_samples")) == 0:
-        return {
-            "average_percent": 1 * 100,
-            "negatives": len(json_response["undetected_downloaded_samples"]),
-            "positives": len(json_response["detected_downloaded_samples"])
-        }
     return {
         "average_percent": (len(json_response["detected_downloaded_samples"])/(len(json_response["detected_downloaded_samples"]) + len(json_response["undetected_downloaded_samples"]))) * 100,
         "negatives": len(json_response["undetected_downloaded_samples"]),
@@ -69,7 +63,7 @@ def adv_scan(filePath):
     try:
         json_response = response.json()
         if json_response["verbose_msg"] == "Scan request successfully queued, come back later for the report":
-            addScheduledFile(filePath, json_response["sha1"], user="Devansh")
+            addScheduledFile(filePath, json_response["sha1"], user="Abhay_Sharma")
         return {
             'message': json_response["verbose_msg"]
         }
